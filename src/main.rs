@@ -19,9 +19,10 @@ fn main() {
             "Player {}'s turn! Select a tile (1-9): ",
             current_player.player_team()
         );
-        let tile_choice = tile_select();
-        println!("{tile_choice}")
+        // println!("{tile_choice}")
+        tiles[tile_select()].update_state(current_player.default_tile);
     }
+    println!("{:?}", tiles);
 }
 
 fn tile_select() -> usize {

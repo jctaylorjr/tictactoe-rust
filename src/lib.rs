@@ -38,15 +38,34 @@ impl Tile {
 
 #[derive(Clone)]
 pub struct Player {
-    pub default_tile: TileState,
+    pub team: TileState,
 }
 
 impl Player {
-    pub fn new(default_tile: TileState) -> Player {
-        Player { default_tile }
+    pub fn new(team: TileState) -> Player {
+        Player { team }
     }
 
     pub fn player_team(&self) -> &str {
-        self.default_tile.enum_str()
+        self.team.enum_str()
+    }
+}
+
+const BOARD_SIZE: usize = 9;
+
+pub struct Game {
+    pub board: Vec<Tile>,
+    pub players: Vec<Player>,
+}
+
+impl Game {
+    pub fn new() -> Game {
+        Game {
+            board: vec![Tile::new(); BOARD_SIZE],
+            players: vec![
+                Player::new(TileState::X),
+                Player::new(TileState::O),
+            ],
+        }
     }
 }

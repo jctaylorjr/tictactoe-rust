@@ -2,7 +2,7 @@ use std::{io, usize};
 
 // use rand;
 // use std::time::{Duration, Instant};
-use tictactoe::{Player, Tile, TileState};
+use tictactoe::{Player, Tile, TileState, Game};
 
 fn main() {
     let board_size = 9;
@@ -20,7 +20,7 @@ fn main() {
             current_player.player_team()
         );
         // println!("{tile_choice}")
-        tiles[tile_select()].update_state(current_player.default_tile);
+        tiles[tile_select()].update_state(current_player.team);
     }
     println!("{:?}", tiles);
 }

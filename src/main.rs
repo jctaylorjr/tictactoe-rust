@@ -1,46 +1,13 @@
-use std::{io, usize};
-
 // use rand;
 // use std::time::{Duration, Instant};
-use tictactoe::{Player, Tile, TileState, Game};
+use tictactoe::Game;
 
 fn main() {
-    let board_size = 9;
-    let mut tiles: Vec<Tile> = vec![Tile::new(); board_size];
+    let mut game = Game::new();
 
-    // dot_product_test();
-    let player_x = Player::new(TileState::X);
-    let player_o = Player::new(TileState::O);
-
-    let mut players = vec![player_x, player_o].into_iter().cycle();
-    for _ in 0..board_size {
-        let current_player = players.next().unwrap();
-        println!(
-            "Player {}'s turn! Select a tile (1-9): ",
-            current_player.player_team()
-        );
-        // println!("{tile_choice}")
-        tiles[tile_select()].update_state(current_player.team);
-    }
-    println!("{:?}", tiles);
+    println!("Welcome to Tic Tac Toe!");
+    game.start_game();
 }
-
-fn tile_select() -> usize {
-    let mut input = String::new();
-
-    loop {
-        input.clear();
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Failed to read input");
-        if let Ok(n) = input.trim().parse() {
-            if (1..=9).contains(&n) {
-                return (n - 1) as usize;
-            }
-        }
-    }
-}
-
 // fn dot_product_test() {
 //     let arr0: Vec<f64> = rand::random_iter().take(100000).collect();
 //     let arr1: Vec<f64> = rand::random_iter().take(100000).collect();

@@ -3,10 +3,25 @@
 use tictactoe::Game;
 
 fn main() {
-    let mut game = Game::new();
-
     println!("Welcome to Tic Tac Toe!");
-    game.start_game();
+
+    let mut play = true;
+    while play {
+        let mut game = Game::new();
+        game.start_game();
+        play = continue_prompt();
+    }
+}
+
+fn continue_prompt() -> bool {
+    println!("Play again (y/n)?");
+    let mut input = String::new();
+    std::io::stdin().read_line(&mut input).unwrap();
+    if input.trim().eq_ignore_ascii_case("y") {
+        true
+    } else {
+        false
+    }
 }
 // fn dot_product_test() {
 //     let arr0: Vec<f64> = rand::random_iter().take(100000).collect();
